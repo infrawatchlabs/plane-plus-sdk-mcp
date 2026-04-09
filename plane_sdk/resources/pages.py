@@ -20,9 +20,13 @@ class PagesMixin:
     def delete_page(self, project_id: str, page_id: str) -> None:
         return self._delete(self._project_url(project_id, f"pages/{page_id}/"))
 
-    def update_page_description(self, project_id: str, page_id: str, description_html: str) -> dict:
-        """Update page content (description). Uses the InfraWatch custom endpoint."""
+    def update_page_content(self, project_id: str, page_id: str, content_html: str) -> dict:
+        """Replace the full page content (body). Uses the InfraWatch custom endpoint.
+
+        The underlying API field is 'description_html' but we expose it
+        as 'content' since that's what it actually is — the page body.
+        """
         return self._patch(
             self._project_url(project_id, f"pages/{page_id}/description/"),
-            {"description_html": description_html},
+            {"description_html": content_html},
         )

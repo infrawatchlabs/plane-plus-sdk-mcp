@@ -445,9 +445,9 @@ def update_project_page(project_id: str, page_id: str, name: str = "") -> str:
 
 
 @server.tool()
-def update_page_description(project_id: str, page_id: str, description_html: str) -> str:
-    """Update page content/body. Use HTML tags for formatting."""
-    return _safe(lambda: _get_client().update_page_description(project_id, page_id, description_html))
+def update_page_content(project_id: str, page_id: str, content_html: str) -> str:
+    """Replace the full page content (body). Use HTML tags for formatting."""
+    return _safe(lambda: _get_client().update_page_content(project_id, page_id, content_html))
 
 
 # ---------------------------------------------------------------------------
