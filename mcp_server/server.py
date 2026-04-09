@@ -279,6 +279,27 @@ def delete_work_item_link(project_id: str, work_item_id: str, link_id: str) -> s
 
 
 # ---------------------------------------------------------------------------
+# Relations
+# ---------------------------------------------------------------------------
+
+
+@server.tool()
+def list_work_item_relations(project_id: str, work_item_id: str) -> str:
+    """List relations for a work item, grouped by type: blocking, blocked_by, duplicate, relates_to, start_before, start_after, finish_before, finish_after."""
+    return _safe(lambda: _get_client().list_relations(project_id, work_item_id))
+
+
+@server.tool()
+def create_work_item_relation(
+    project_id: str, work_item_id: str, relation_type: str, related_work_item_ids: list[str]
+) -> str:
+    """Create a relation between work items. relation_type: blocking, blocked_by, duplicate, relates_to, start_before, start_after, finish_before, finish_after."""
+    return _safe(lambda: _get_client().create_relation(
+        project_id, work_item_id, relation_type=relation_type, related_work_item_ids=related_work_item_ids,
+    ))
+
+
+# ---------------------------------------------------------------------------
 # Activities
 # ---------------------------------------------------------------------------
 

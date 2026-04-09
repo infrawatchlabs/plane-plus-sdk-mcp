@@ -55,6 +55,22 @@ class WorkItemsMixin:
     def delete_link(self, project_id: str, work_item_id: str, link_id: str) -> None:
         return self._delete(self._project_url(project_id, f"work-items/{work_item_id}/links/{link_id}/"))
 
+    # -- relations -----------------------------------------------------------
+
+    def list_relations(self, project_id: str, work_item_id: str) -> dict:
+        """List relations grouped by type: blocking, blocked_by, duplicate, relates_to, etc."""
+        return self._get(self._project_url(project_id, f"work-items/{work_item_id}/relations/"))
+
+    def create_relation(
+        self, project_id: str, work_item_id: str, *, relation_type: str, related_work_item_ids: list[str]
+    ) -> list:
+        """Create relations. relation_type: blocking, blocked_by, duplicate, relates_to,
+        start_before, start_after, finish_before, finish_after."""
+        return self._post(
+            self._project_url(project_id, f"work-items/{work_item_id}/relations/"),
+            {"relation_type": relation_type, "issues": related_work_item_ids},
+        )
+
     # -- activities ----------------------------------------------------------
 
     def list_activities(self, project_id: str, work_item_id: str) -> dict:
