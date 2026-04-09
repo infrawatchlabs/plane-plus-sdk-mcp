@@ -1,0 +1,19 @@
+[project]
+name = "plane-sdk-mcp"
+version = "0.1.0"
+description = "Internal Plane SDK + MCP server for self-hosted Plane OSS"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "mcp[cli]>=1.0",
+]
+
+[project.scripts]
+plane-mcp = "mcp_server.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["plane_sdk", "mcp_server"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
