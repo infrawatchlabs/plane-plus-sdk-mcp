@@ -14,6 +14,7 @@ from .resources.modules import ModulesMixin
 from .resources.cycles import CyclesMixin
 from .resources.pages import PagesMixin
 from .resources.members import MembersMixin
+from .resources.intake import IntakeMixin
 
 
 class PlaneClient(
@@ -25,6 +26,7 @@ class PlaneClient(
     CyclesMixin,
     PagesMixin,
     MembersMixin,
+    IntakeMixin,
 ):
     """Synchronous client for the Plane OSS API v1.
 

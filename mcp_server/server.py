@@ -484,6 +484,50 @@ def update_page_content(project_id: str, page_id: str, content_html: str) -> str
 
 
 # ---------------------------------------------------------------------------
+# Intake (triage)
+# ---------------------------------------------------------------------------
+
+
+@server.tool()
+def list_intake_work_items(project_id: str) -> str:
+    """List intake (triage) items in a project."""
+    return _safe(lambda: _get_client().list_intake_work_items(project_id))
+
+
+@server.tool()
+def create_intake_work_item(
+    project_id: str,
+    name: str,
+    description_html: str = "",
+    priority: str = "none",
+) -> str:
+    """Create an intake item (idea/request for triage). Goes to intake queue, not backlog."""
+    data: dict = {"name": name, "priority": priority}
+    if description_html:
+        data["description_html"] = description_html
+    return _safe(lambda: _get_client().create_intake_work_item(project_id, **data))
+
+
+@server.tool()
+def retrieve_intake_work_item(project_id: str, intake_id: str) -> str:
+    """Get intake item details."""
+    return _safe(lambda: _get_client().get_intake_work_item(project_id, intake_id))
+
+
+@server.tool()
+def update_intake_work_item(project_id: str, intake_id: str, name: str = "", priority: str = "", state_id: str = "") -> str:
+    """Update an intake item."""
+    data = {k: v for k, v in {"name": name, "priority": priority, "state": state_id}.items() if v}
+    return _safe(lambda: _get_client().update_intake_work_item(project_id, intake_id, **data))
+
+
+@server.tool()
+def delete_intake_work_item(project_id: str, intake_id: str) -> str:
+    """Delete an intake item."""
+    return _safe(lambda: _get_client().delete_intake_work_item(project_id, intake_id) or "Deleted")
+
+
+# ---------------------------------------------------------------------------
 # Members
 # ---------------------------------------------------------------------------
 
