@@ -254,6 +254,12 @@ def delete_work_item_comment(project_id: str, work_item_id: str, comment_id: str
     return _safe(lambda: _get_client().delete_comment(project_id, work_item_id, comment_id) or "Deleted")
 
 
+@server.tool()
+def update_work_item_comment(project_id: str, work_item_id: str, comment_id: str, comment_html: str) -> str:
+    """Update a comment on a work item."""
+    return _safe(lambda: _get_client().update_comment(project_id, work_item_id, comment_id, comment_html=comment_html))
+
+
 # ---------------------------------------------------------------------------
 # Links
 # ---------------------------------------------------------------------------
