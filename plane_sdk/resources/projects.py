@@ -5,8 +5,13 @@ from typing import Any
 
 
 class ProjectsMixin:
-    def list_projects(self) -> dict:
-        return self._get(self._url("projects/"))
+    def list_projects(self, *, member_only: bool = True) -> dict:
+        data = self._get(self._url("projects/"))
+        if member_only and "results" in data:
+            data["results"] = [p for p in data["results"] if p.get("is_member")]
+            data["count"] = len(data["results"])
+            data["total_results"] = data["count"]
+        return data
 
     def create_project(self, *, name: str, identifier: str, **kwargs: Any) -> dict:
         project = self._post(self._url("projects/"), {"name": name, "identifier": identifier, **kwargs})

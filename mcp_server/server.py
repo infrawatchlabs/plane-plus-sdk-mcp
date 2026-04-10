@@ -71,9 +71,9 @@ def get_me() -> str:
 
 
 @server.tool()
-def list_projects() -> str:
-    """List all projects in the workspace."""
-    return _safe(lambda: _get_client().list_projects())
+def list_projects(member_only: bool = True) -> str:
+    """List projects in the workspace. Default: only projects where user is a member. Set member_only=False to see all."""
+    return _safe(lambda: _get_client().list_projects(member_only=member_only))
 
 
 @server.tool()
