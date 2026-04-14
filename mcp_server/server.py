@@ -238,6 +238,80 @@ def delete_work_item(project_id: str, work_item_id: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Epics
+# ---------------------------------------------------------------------------
+
+
+@server.tool()
+def list_epics(project_id: str) -> str:
+    """List epics in a project. Epics are high-level issues that group work items."""
+    return _safe(lambda: _get_client().list_epics(project_id))
+
+
+@server.tool()
+def create_epic(
+    project_id: str,
+    name: str,
+    description_html: str = "",
+    priority: str = "none",
+    state_id: str = "",
+    label_ids: list[str] | None = None,
+    assignee_ids: list[str] | None = None,
+) -> str:
+    """Create an epic. The epic issue type is set automatically. priority: urgent, high, medium, low, none."""
+    data: dict = {"name": name, "priority": priority}
+    if description_html:
+        data["description_html"] = description_html
+    if state_id:
+        data["state"] = state_id
+    if label_ids:
+        data["labels"] = label_ids
+    if assignee_ids:
+        data["assignees"] = assignee_ids
+    return _safe(lambda: _get_client().create_epic(project_id, **data))
+
+
+@server.tool()
+def retrieve_epic(project_id: str, epic_id: str) -> str:
+    """Get epic details."""
+    return _safe(lambda: _get_client().get_epic(project_id, epic_id))
+
+
+@server.tool()
+def update_epic(
+    project_id: str,
+    epic_id: str,
+    name: str = "",
+    description_html: str = "",
+    priority: str = "",
+    state_id: str = "",
+    label_ids: list[str] | None = None,
+    assignee_ids: list[str] | None = None,
+) -> str:
+    """Update an epic. label_ids and assignee_ids are REPLACE (full list, not append)."""
+    data = {}
+    if name:
+        data["name"] = name
+    if description_html:
+        data["description_html"] = description_html
+    if priority:
+        data["priority"] = priority
+    if label_ids is not None:
+        data["labels"] = label_ids
+    if assignee_ids is not None:
+        data["assignees"] = assignee_ids
+    if state_id:
+        data["state"] = state_id
+    return _safe(lambda: _get_client().update_epic(project_id, epic_id, **data))
+
+
+@server.tool()
+def delete_epic(project_id: str, epic_id: str) -> str:
+    """Delete an epic."""
+    return _safe(lambda: _get_client().delete_epic(project_id, epic_id) or "Deleted")
+
+
+# ---------------------------------------------------------------------------
 # Comments
 # ---------------------------------------------------------------------------
 
