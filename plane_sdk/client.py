@@ -16,6 +16,7 @@ from .resources.pages import PagesMixin
 from .resources.members import MembersMixin
 from .resources.intake import IntakeMixin
 from .resources.epics import EpicsMixin
+from .resources.workspace_pages import WorkspacePagesMixin
 
 
 class PlaneClient(
@@ -29,6 +30,7 @@ class PlaneClient(
     MembersMixin,
     IntakeMixin,
     EpicsMixin,
+    WorkspacePagesMixin,
 ):
     """Synchronous client for the Plane OSS API v1.
 

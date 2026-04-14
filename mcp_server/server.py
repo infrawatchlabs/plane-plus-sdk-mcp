@@ -558,6 +558,43 @@ def update_page_content(project_id: str, page_id: str, content_html: str) -> str
 
 
 # ---------------------------------------------------------------------------
+# Workspace Pages (wiki)
+# ---------------------------------------------------------------------------
+
+
+@server.tool()
+def list_workspace_pages() -> str:
+    """List all workspace-level pages (wiki pages not tied to a project)."""
+    return _safe(lambda: _get_client().list_workspace_pages())
+
+
+@server.tool()
+def create_workspace_page(name: str, description_html: str = "") -> str:
+    """Create a workspace-level page (wiki). Not tied to any project."""
+    kwargs = {"description_html": description_html} if description_html else {}
+    return _safe(lambda: _get_client().create_workspace_page(name=name, **kwargs))
+
+
+@server.tool()
+def retrieve_workspace_page(page_id: str) -> str:
+    """Get workspace page details."""
+    return _safe(lambda: _get_client().get_workspace_page(page_id))
+
+
+@server.tool()
+def update_workspace_page(page_id: str, name: str = "") -> str:
+    """Update workspace page metadata (name, etc.)."""
+    data = {k: v for k, v in {"name": name}.items() if v}
+    return _safe(lambda: _get_client().update_workspace_page(page_id, **data))
+
+
+@server.tool()
+def delete_workspace_page(page_id: str) -> str:
+    """Delete a workspace page."""
+    return _safe(lambda: _get_client().delete_workspace_page(page_id) or "Deleted")
+
+
+# ---------------------------------------------------------------------------
 # Intake (triage)
 # ---------------------------------------------------------------------------
 
