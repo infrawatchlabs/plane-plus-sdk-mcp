@@ -11,8 +11,17 @@ class WorkspacePagesMixin:
     def create_workspace_page(self, *, name: str, **kwargs: Any) -> dict:
         return self._post(self._url("pages/"), {"name": name, **kwargs})
 
-    def get_workspace_page(self, page_id: str) -> dict:
-        return self._get(self._url(f"pages/{page_id}/"))
+    def get_workspace_page(self, page_id: str, response_format: str = "html") -> dict:
+        """Get workspace page details.
+
+        Args:
+            response_format: "html" (default) or "markdown". When "markdown",
+                the response includes a ``description_markdown`` field.
+        """
+        params = {}
+        if response_format == "markdown":
+            params["format"] = "markdown"
+        return self._get(self._url(f"pages/{page_id}/"), **params)
 
     def update_workspace_page(self, page_id: str, **kwargs: Any) -> dict:
         return self._patch(self._url(f"pages/{page_id}/"), kwargs)

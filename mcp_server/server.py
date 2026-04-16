@@ -539,9 +539,9 @@ def create_project_page(project_id: str, name: str, description_html: str = "") 
 
 
 @server.tool()
-def retrieve_project_page(project_id: str, page_id: str) -> str:
-    """Get page details."""
-    return _safe(lambda: _get_client().get_page(project_id, page_id))
+def retrieve_project_page(project_id: str, page_id: str, response_format: str = "html") -> str:
+    """Get page details. Set response_format="markdown" to get description_markdown in addition to description_html."""
+    return _safe(lambda: _get_client().get_page(project_id, page_id, response_format=response_format))
 
 
 @server.tool()
@@ -552,9 +552,9 @@ def update_project_page(project_id: str, page_id: str, name: str = "") -> str:
 
 
 @server.tool()
-def update_page_content(project_id: str, page_id: str, content_html: str) -> str:
-    """Replace the full page content (body). Use HTML tags for formatting."""
-    return _safe(lambda: _get_client().update_page_content(project_id, page_id, content_html))
+def update_page_content(project_id: str, page_id: str, content_html: str, content_format: str = "html") -> str:
+    """Replace the full page content (body). Use HTML tags for formatting, or set content_format="markdown" to write in markdown (converted to HTML server-side)."""
+    return _safe(lambda: _get_client().update_page_content(project_id, page_id, content_html, content_format=content_format))
 
 
 # ---------------------------------------------------------------------------
@@ -576,9 +576,9 @@ def create_workspace_page(name: str, description_html: str = "") -> str:
 
 
 @server.tool()
-def retrieve_workspace_page(page_id: str) -> str:
-    """Get workspace page details."""
-    return _safe(lambda: _get_client().get_workspace_page(page_id))
+def retrieve_workspace_page(page_id: str, response_format: str = "html") -> str:
+    """Get workspace page details. Set response_format="markdown" to get description_markdown in addition to description_html."""
+    return _safe(lambda: _get_client().get_workspace_page(page_id, response_format=response_format))
 
 
 @server.tool()
