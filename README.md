@@ -132,7 +132,7 @@ client expects stdio transport, that's what FastMCP exposes by default.
 The examples above track `main`. For stability, pin to a tag:
 
 ```
-"args": ["--from", "git+https://github.com/infrawatchlabs/plane-plus-sdk-mcp.git@v0.1.0", "plane-mcp"]
+"args": ["--from", "git+https://github.com/infrawatchlabs/plane-plus-sdk-mcp.git@v1.0.0", "plane-mcp"]
 ```
 
 Or to a specific commit:
