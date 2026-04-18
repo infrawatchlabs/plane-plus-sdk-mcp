@@ -37,9 +37,9 @@ class PlaneClient(
     Usage::
 
         client = PlaneClient(
-            base_url="https://projects.infrawatchlabs.com",
+            base_url="https://plane.example.com",
             api_key="plane_api_...",
-            workspace_slug="iwl-org",
+            workspace_slug="my-workspace",
         )
         projects = client.list_projects()
     """

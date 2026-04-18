@@ -1,12 +1,35 @@
 [project]
-name = "plane-sdk-mcp"
+name = "plane-plus-sdk-mcp"
 version = "0.1.0"
-description = "Internal Plane SDK + MCP server for self-hosted Plane OSS"
+description = "Python SDK and MCP server for Plane Plus."
+readme = "README.md"
 requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "InfraWatch Labs", email = "opensource@infrawatchlabs.com" },
+]
+keywords = ["plane", "plane-plus", "mcp", "fastmcp", "sdk", "agents", "ai", "project-management"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Groupware",
+]
 dependencies = [
     "httpx>=0.27",
     "mcp[cli]>=1.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/infrawatchlabs/plane-plus-sdk-mcp"
+Repository = "https://github.com/infrawatchlabs/plane-plus-sdk-mcp"
+Issues = "https://github.com/infrawatchlabs/plane-plus-sdk-mcp/issues"
+"Plane Plus" = "https://github.com/infrawatchlabs/plane-plus"
+"InfraWatch Labs" = "https://infrawatchlabs.com"
 
 [project.scripts]
 plane-mcp = "mcp_server.server:main"

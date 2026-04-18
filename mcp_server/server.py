@@ -1,9 +1,9 @@
-"""Plane MCP Server — exposes Plane SDK as MCP tools.
+"""Plane Plus MCP Server — exposes the Plane Plus SDK as MCP tools.
 
 Configuration via environment variables:
-    PLANE_BASE_URL       — e.g. https://projects.infrawatchlabs.com
-    PLANE_API_KEY        — API key for this agent
-    PLANE_WORKSPACE_SLUG — e.g. iwl-org
+    PLANE_BASE_URL       — e.g. https://plane.example.com
+    PLANE_API_KEY        — API key for the target workspace
+    PLANE_WORKSPACE_SLUG — e.g. my-workspace
 """
 
 from __future__ import annotations
