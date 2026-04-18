@@ -183,8 +183,9 @@ def create_work_item(
     state_id: str = "",
     label_ids: list[str] | None = None,
     assignee_ids: list[str] | None = None,
+    parent_id: str = "",
 ) -> str:
-    """Create a work item. priority: urgent, high, medium, low, none."""
+    """Create a work item. priority: urgent, high, medium, low, none. Pass parent_id to create a sub-work-item under an existing parent."""
     data: dict = {"name": name, "priority": priority}
     if description_html:
         data["description_html"] = description_html
@@ -194,6 +195,8 @@ def create_work_item(
         data["labels"] = label_ids
     if assignee_ids:
         data["assignees"] = assignee_ids
+    if parent_id:
+        data["parent_id"] = parent_id
     return _safe(lambda: _get_client().create_work_item(project_id, **data))
 
 
@@ -213,8 +216,9 @@ def update_work_item(
     state_id: str = "",
     label_ids: list[str] | None = None,
     assignee_ids: list[str] | None = None,
+    parent_id: str | None = None,
 ) -> str:
-    """Update a work item. label_ids and assignee_ids are REPLACE (full list, not append)."""
+    """Update a work item. label_ids and assignee_ids are REPLACE (full list, not append). Pass parent_id as a UUID to re-parent, or an empty string to clear (un-parent)."""
     data = {}
     if name:
         data["name"] = name
@@ -228,6 +232,9 @@ def update_work_item(
         data["assignees"] = assignee_ids
     if state_id:
         data["state"] = state_id
+    if parent_id is not None:
+        # Empty string clears the parent; non-empty sets it.
+        data["parent_id"] = parent_id or None
     return _safe(lambda: _get_client().update_work_item(project_id, work_item_id, **data))
 
 
