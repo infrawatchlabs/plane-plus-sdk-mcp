@@ -29,7 +29,7 @@ Homepage = "https://github.com/eyriehq/plane-plus-sdk-mcp"
 Repository = "https://github.com/eyriehq/plane-plus-sdk-mcp"
 Issues = "https://github.com/eyriehq/plane-plus-sdk-mcp/issues"
 "Plane Plus" = "https://github.com/eyriehq/plane-plus"
-"InfraWatch Labs" = "https://eyriehq.com"
+"EyrieHQ" = "https://eyriehq.com"
 
 [project.scripts]
 plane-mcp = "mcp_server.server:main"
