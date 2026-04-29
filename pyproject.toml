@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
 authors = [
-    { name = "InfraWatch Labs", email = "opensource@infrawatchlabs.com" },
+    { name = "InfraWatch Labs", email = "hello@eyriehq.com" },
 ]
 keywords = ["plane", "plane-plus", "mcp", "fastmcp", "sdk", "agents", "ai", "project-management"]
 classifiers = [
@@ -29,7 +29,7 @@ Homepage = "https://github.com/eyriehq/plane-plus-sdk-mcp"
 Repository = "https://github.com/eyriehq/plane-plus-sdk-mcp"
 Issues = "https://github.com/eyriehq/plane-plus-sdk-mcp/issues"
 "Plane Plus" = "https://github.com/eyriehq/plane-plus"
-"InfraWatch Labs" = "https://infrawatchlabs.com"
+"InfraWatch Labs" = "https://eyriehq.com"
 
 [project.scripts]
 plane-mcp = "mcp_server.server:main"

@@ -14,7 +14,7 @@
   AI agents.</b>
 </p>
 <p align="center">
-  by <a href="https://infrawatchlabs.com">InfraWatch Labs</a> · Apache-2.0
+  by <a href="https://eyriehq.com">InfraWatch Labs</a> · Apache-2.0
 </p>
 
 <p align="center">
@@ -303,12 +303,12 @@ Apache License 2.0. See [LICENSE](./LICENSE).
   fork of Plane. This SDK is the most direct way to drive it.
 - **[Plane](https://plane.so)** — the upstream project this SDK is a client
   for. The core SDK surface works against any Plane instance.
-- **[InfraWatch Labs](https://infrawatchlabs.com)** — maker of this SDK and
+- **[InfraWatch Labs](https://eyriehq.com)** — maker of this SDK and
   the EyrieHQ observability platform.
 
 ---
 
 <p align="center">
-  <em>Built by <a href="https://infrawatchlabs.com">InfraWatch Labs</a>, maker
+  <em>Built by <a href="https://eyriehq.com">InfraWatch Labs</a>, maker
   of the EyrieHQ observability platform.</em>
 </p>
